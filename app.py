@@ -30,7 +30,7 @@ def upload_file():
         # Save the file in the specified directory
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(file_path)
-        return f"File {file.filename} uploaded successfully!"
+        return f"File {file.filename} uploaded to directory successfully!"
 
 if __name__ == "__main__":
     app.run(debug=True)
