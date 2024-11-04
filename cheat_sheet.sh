@@ -6,17 +6,16 @@ Navigate to http://127.0.0.1:5000
 
 # Build the image
 
-podman build -t upload-app:try-22 .
+## (Secret flaw)
+podman build  -t [UNIQUE_IMAGE_NAME] .
 
-# Run the image locally (optional)
-
-podman run --platform linux/arm64 -d -p 5022:5000 upload-app:try-22
+## (Correct)
+podman build --platform linux/amd64 -t [UNIQUE_IMAGE_NAME] .
 
 # Push image to Docker Hub
 
-
-podman push upload-app:try-22 docker.io/mwlinnem/upload-app:try-22
+podman push [UNIQUE_IMAGE_NAME] docker.io/mwlinnem/[UNIQUE_IMAGE_NAME]
 
 # Deploy image from DockerHub to Code Engine
 
-ibmcloud code-engine application create --name foo --port 5000 --image docker.io/mwlinnem/upload-app:oct-10-v2-9
+ibmcloud code-engine application create --name [UNIQUE_APP_NAME] --port 5000 --image docker.io/mwlinnem/[UNIQUE_IMAGE_NAME] --wait-timeout 180
